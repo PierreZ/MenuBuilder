@@ -22,8 +22,6 @@ public class MenuBuilderService {
 
     @RequestMapping("/images/{typeMenu}")
     Map<String, List<String>> buildMenu(@PathVariable("typeMenu")TypeMenu typeMenu){
-        System.out.println(typeMenu);
-        System.out.println(business.getClass());
         return this.business.buildMenu(typeMenu);
     }
 

@@ -1,5 +1,6 @@
 package fr.isen.steam;
 
+import fr.isen.steam.dao.MenuBuilderDAO;
 import fr.isen.steam.dao.impl.MenuBuilderDAOImpl;
 import fr.isen.steam.utils.SteamException;
 import org.junit.Assert;
@@ -20,19 +21,18 @@ import javax.validation.constraints.AssertTrue;
 public class MenuBuilderDAOTests {
 
     @Autowired
-    MenuBuilderDAOImpl dao;
+    MenuBuilderDAO dao;
 
     @Test
     public void getOneKey(){
 
         String data = dao.loadProperty("menu.main");
-
         Assert.assertTrue(data.length()>0);
     }
 
     @Test(expected = java.util.MissingResourceException.class)
     public void getNoKey(){
-        dao.loadProperty("unicorn");
 
+        dao.loadProperty("unicorn");
     }
 }

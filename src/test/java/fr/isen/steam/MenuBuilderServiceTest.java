@@ -39,11 +39,4 @@ public class MenuBuilderServiceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("up")));
     }
-
-    @Test
-    public void getHelol() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/api/images/MAIN").accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("{\"Feature Items\":[],\"Games\":[\"Free to play\",\"Action\",\"Adventure\"],\"Software\":[\"Utilities\",\"Design\"],\"Demos\":[],\"News\":[]}")));
-    }
 }

@@ -3,6 +3,7 @@ package fr.isen.steam.business.impl;
 import fr.isen.steam.TypeMenu;
 import fr.isen.steam.business.MenuBuilderBusiness;
 import fr.isen.steam.dao.MenuBuilderDAO;
+import fr.isen.steam.dao.impl.MenuBuilderDAOImpl;
 import fr.isen.steam.utils.SteamException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,35 +22,8 @@ public class MenuBuilderBusinessImpl implements MenuBuilderBusiness {
 
     @Override
     public Map<String, List<String>> buildMenu(TypeMenu typeMenu) {
-        return generateStruct(getDAO(typeMenu));
-    }
 
-    public String getDAO(TypeMenu typeMenu){
-
-        String cle;
-        switch (typeMenu){
-            case MAIN:
-                cle = "menu.main";
-                break;
-            case TAGS:
-                cle = "menu.tags";
-                break;
-            case GENRES:
-                cle = "menu.genres";
-                break;
-            default:
-                throw new SteamException("Menu introuvable");
-        }
-        return menuBuilderDAO.loadProperty(cle);
-    }
-
-    /**
-     * Returns the right format from DAO
-     * Parse string: menu are separated by | and sousmenu by ;
-     * @param data to parse
-     * @return map. Key is menu, list are the sous-menu
-     */
-    private Map<String,List<String>> generateStruct(String data) {
+        String data = getDAO(typeMenu);
 
         Map<String, List<String>> menus = new LinkedHashMap<String, List<String>>();
 
@@ -69,4 +43,33 @@ public class MenuBuilderBusinessImpl implements MenuBuilderBusiness {
         }
         return menus;
     }
+
+    public String getDAO(TypeMenu typeMenu){
+
+        String cle;
+        switch (typeMenu){
+            case MAIN:
+                cle = "menu.main";
+                break;
+            case TAGS:
+                cle = "menu.tags";
+                break;
+            case GENRES:
+                cle = "menu.genres";
+                break;
+            default:
+                throw new SteamException("Menu introuvable");
+        }
+        System.out.println(menuBuilderDAO.loadProperty(cle));
+        return menuBuilderDAO.loadProperty(cle);
+    }
+
+    public MenuBuilderDAO getMenuBuilderDAO() {
+        return menuBuilderDAO;
+    }
+
+    public void setMenuBuilderDAO(MenuBuilderDAO menuBuilderDAO) {
+        this.menuBuilderDAO = menuBuilderDAO;
+    }
+
 }
