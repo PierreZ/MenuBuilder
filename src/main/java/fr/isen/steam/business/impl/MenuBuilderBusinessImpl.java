@@ -14,14 +14,13 @@ import java.util.*;
  */
 
 @Component
-public class MenuBuilderBusinessImpl implements MenuBuilderBusiness{
+public class MenuBuilderBusinessImpl implements MenuBuilderBusiness {
 
     @Autowired
     private MenuBuilderDAO menuBuilderDAO;
 
     @Override
     public Map<String, List<String>> buildMenu(TypeMenu typeMenu) {
-
         return generateStruct(getDAO(typeMenu));
     }
 

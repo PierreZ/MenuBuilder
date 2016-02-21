@@ -43,6 +43,9 @@ public class MenuBuilderBusinessImplTest {
         when(business.getDAO(TypeMenu.MAIN)).thenReturn(daoResult);
 
         Map<String, List<String>> myMap = business.buildMenu(TypeMenu.MAIN);
-        System.out.println(myMap);
+
+        Assert.assertEquals(0, (myMap.get("Unicorn")).size());
+        Assert.assertEquals(0, (myMap.get("Swag")).size());
+        Assert.assertEquals(2, myMap.size());
     }
 }
