@@ -1,9 +1,8 @@
 package fr.isen.steam.utils;
 
-import java.io.IOException;
-
 /**
  * Created by pierrezemb on 21/02/2016.
+ * Steam exception, extending Runtime Exception
  */
 public class SteamException extends RuntimeException {
 

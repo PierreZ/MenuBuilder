@@ -3,22 +3,30 @@ package fr.isen.steam.dao.impl;
 import fr.isen.steam.dao.MenuBuilderDAO;
 import fr.isen.steam.utils.SteamException;
 import org.springframework.stereotype.Component;
-
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by pierrezemb on 21/02/2016.
+ * This is the implementation of MenuBuilderDAO
  */
 @Component
 public class MenuBuilderDAOImpl implements MenuBuilderDAO {
+
+    /**
+     * Override method. Only a wrapper for getProperty
+     * @param cle
+     * @return the raw string to parse
+     */
     @Override
     public String loadProperty(String cle) {
         return getProperty(cle);
     }
 
+    /**
+     * Actual method that is loading the needed property
+     * @param cle
+     * @return the raw string to parse
+     */
     public String getProperty(String cle) {
 
         ResourceBundle resourceBundle = null;

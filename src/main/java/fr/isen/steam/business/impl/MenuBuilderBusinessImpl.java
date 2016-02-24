@@ -3,7 +3,6 @@ package fr.isen.steam.business.impl;
 import fr.isen.steam.TypeMenu;
 import fr.isen.steam.business.MenuBuilderBusiness;
 import fr.isen.steam.dao.MenuBuilderDAO;
-import fr.isen.steam.dao.impl.MenuBuilderDAOImpl;
 import fr.isen.steam.utils.SteamException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +11,7 @@ import java.util.*;
 
 /**
  * Created by pierrezemb on 20/02/2016.
+ * Implementation of business according to MenuBuilderBusiness
  */
 
 @Component
@@ -20,6 +20,12 @@ public class MenuBuilderBusinessImpl implements MenuBuilderBusiness {
     @Autowired
     private MenuBuilderDAO menuBuilderDAO;
 
+    /**
+     * Generate a map from DAO
+     * Parsing data into map
+     * @param typeMenu
+     * @return a map of menu/submenus
+     */
     @Override
     public Map<String, List<String>> buildMenu(TypeMenu typeMenu) {
 
@@ -44,6 +50,11 @@ public class MenuBuilderBusinessImpl implements MenuBuilderBusiness {
         return menus;
     }
 
+    /**
+     * Getter for DAO
+     * @param typeMenu
+     * @return string
+     */
     public String getDAO(TypeMenu typeMenu){
 
         String cle;
@@ -64,10 +75,18 @@ public class MenuBuilderBusinessImpl implements MenuBuilderBusiness {
         return menuBuilderDAO.loadProperty(cle);
     }
 
+    /**
+     *
+     * @return instance of DAO
+     */
     public MenuBuilderDAO getMenuBuilderDAO() {
         return menuBuilderDAO;
     }
 
+    /**
+     *
+     * @param Instance of menuBuilderDAO
+     */
     public void setMenuBuilderDAO(MenuBuilderDAO menuBuilderDAO) {
         this.menuBuilderDAO = menuBuilderDAO;
     }
